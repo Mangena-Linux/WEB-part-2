@@ -134,7 +134,6 @@ enquiry and contact).
 - GitHub Docs. *GitHub Pages.* Available at: https://docs.github.com/pages [Accessed 2026].
 - Nielsen Norman Group. *Mobile UX for local service websites.* Available at: https://www.nngroup.com [Accessed 2026].
 - MDN Web Docs. *HTML: A good basis for accessibility.* Available at: https://developer.mozilla.org [Accessed 2026].
-- Logo (`images/logo-full.png`): AI-generated image (Google Gemini), supplied by the student. Requires an AI-disclosure entry (in-text citation, full reference, and screengrab annexe) per the module's AI usage guidelines, as it was not hand-drawn or photographed by the student.
 - Karakaya, A. (2021) *Plumber Installs Pipe Fittings* [Photograph]. Pexels. Available at: https://www.pexels.com/photo/plumber-installs-pipe-fittings-6419128/ [Accessed 2026]. Used on index.html (hero) and services.html (Plumbing Repairs).
 - AR Abnoy (2024) *Close-up of Man Using a Spanner* [Photograph]. Pexels. Available at: https://www.pexels.com/photo/close-up-of-man-using-a-spanner-16509869/ [Accessed 2026]. Used on index.html ("Our Work") and services.html (Plumbing Repairs).
 - sejio402 (2024) *Professional Plumber Installing a Radiator Pipe* [Photograph]. Pexels. Available at: https://www.pexels.com/photo/professional-plumber-installing-a-radiator-pipe-29226620/ [Accessed 2026]. Used on index.html ("Our Work") and services.html (Geyser Services).
