@@ -1,0 +1,585 @@
+/* ==========================================================
+   Sipho's Plumbing & Maintenance — Stylesheet
+   Part 2 — Designing the Visuals: CSS Styling and Responsive Design
+   ========================================================== */
+
+/* ---------- 1. CSS Reset / Base Style ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Colour scheme: blue, white & black (brand logo palette) */
+    --color-navy: #0A2E4D;
+    --color-navy-dark: #061C30;
+    --color-blue: #1668B0;
+    --color-blue-dark: #0D4E85;
+    --color-black: #14161A;
+    --color-black-soft: #2B2E33;
+    --color-blue-light: #6BB1E8;
+    --color-light-blue: #F2F6FA;
+    --color-mid-blue: #D9E2EA;
+    --color-white: #FFFFFF;
+    --color-text: #1B1E22;
+    --color-text-muted: #4B5259;
+
+    /* Typography scale (1.25 ratio) */
+    --font-base: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-md: 1.25rem;
+    --fs-lg: 1.563rem;
+    --fs-xl: 1.953rem;
+    --fs-xxl: 2.441rem;
+
+    --radius: 8px;
+    --shadow-card: 0 2px 8px rgba(11, 60, 93, 0.12);
+    --shadow-card-hover: 0 6px 18px rgba(11, 60, 93, 0.2);
+    --max-width: 1100px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-base);
+    font-size: var(--fs-base);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-white);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-base);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--color-navy);
+}
+
+h1 { font-size: var(--fs-xxl); }
+h2 { font-size: var(--fs-xl); margin-bottom: 1rem; }
+h3 { font-size: var(--fs-md); margin-bottom: 0.5rem; }
+
+p { margin-bottom: 1rem; color: var(--color-text); }
+
+a {
+    color: var(--color-navy);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover,
+a:focus {
+    color: var(--color-black);
+}
+a:focus {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+}
+a:active {
+    color: var(--color-navy-dark);
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+ul { list-style: none; }
+
+section {
+    padding: 3rem 1.5rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+}
+
+/* ---------- 2. Header / Navigation (Flexbox layout) ---------- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--color-white);
+    border-bottom: 3px solid var(--color-blue);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: var(--color-navy);
+}
+.logo-img { height: 4rem; width: auto; display: block; }
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+header nav a {
+    font-weight: 600;
+    color: var(--color-text);
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+}
+header nav a:hover,
+header nav a:focus,
+header nav a[aria-current="page"] {
+    color: var(--color-navy);
+    border-bottom-color: var(--color-blue);
+}
+
+.call-now {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 700;
+    padding: 0.6rem 1.1rem;
+    border-radius: var(--radius);
+    white-space: nowrap;
+}
+.call-now:hover,
+.call-now:focus {
+    background-color: var(--color-blue-dark);
+    color: var(--color-white);
+}
+.call-now:active {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+}
+
+/* ---------- 3. Buttons ---------- */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--color-navy);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-white);
+    color: var(--color-navy);
+}
+.btn-primary:active {
+    background-color: var(--color-navy-dark);
+    border-color: var(--color-navy-dark);
+    color: var(--color-white);
+}
+
+/* ---------- 4. Hero (Flexbox layout) ---------- */
+.hero {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background-color: var(--color-light-blue);
+    border-radius: var(--radius);
+}
+.hero-text { flex: 1 1 320px; }
+.hero-img { flex: 1 1 320px; max-width: 30rem; margin: 0 auto; }
+.hero h1 { margin-bottom: 1rem; }
+
+/* ---------- 5. Services overview (CSS Grid layout) ---------- */
+.services-overview {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+.services-overview h2 { grid-column: 1 / -1; }
+
+.service-card {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    padding: 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.service-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+}
+.service-icon { margin: 0 auto 0.75rem; }
+
+/* ---------- 5b. How It Works (process steps) ---------- */
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    counter-reset: none;
+}
+.process-steps li {
+    text-align: center;
+    padding: 1.5rem;
+}
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+/* ---------- 5c. Our Work (photo gallery) ---------- */
+.work-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.work-gallery figure {
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    background-color: var(--color-light-blue);
+}
+.work-gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+.work-gallery figcaption {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--color-navy);
+}
+
+/* ---------- 5d. Service area ---------- */
+.area-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+.area-list li {
+    background-color: var(--color-light-blue);
+    border: 1px solid var(--color-mid-blue);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    color: var(--color-navy);
+}
+
+/* ---------- 6. Trust block ---------- */
+.trust-block {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border-radius: var(--radius);
+    text-align: center;
+}
+.trust-block h2 { color: var(--color-white); }
+.trust-block ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    font-weight: 600;
+}
+.trust-block li {
+    flex: 1 1 220px;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    padding: 1rem;
+}
+
+/* ---------- 7. Page intro (used on About / Services / Enquiry / Contact) ---------- */
+.page-intro {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+/* ---------- 8. About page ---------- */
+.history, .mission-vision, .team, .values, .qualifications {
+    max-width: 760px;
+}
+.history-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: none;
+}
+.history-grid > div { flex: 1 1 320px; }
+.about-photo {
+    flex: 1 1 320px;
+    max-width: 26rem;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+.value-card {
+    background-color: var(--color-light-blue);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    text-align: center;
+}
+.qualifications ul { padding-left: 1.25rem; }
+.qualifications li { margin-bottom: 0.4rem; }
+.team-member {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--color-light-blue);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+.team-photo {
+    width: 7.5rem;
+    height: 7.5rem;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+/* ---------- 9. Services page detail sections ---------- */
+.service-detail {
+    border-bottom: 1px solid var(--color-mid-blue);
+    padding-bottom: 2rem;
+}
+.service-detail-grid {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.service-detail-grid.reverse {
+    flex-direction: row-reverse;
+}
+.service-detail-text { flex: 1 1 320px; }
+.service-photo {
+    flex: 1 1 320px;
+    max-width: 26rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    object-fit: cover;
+    height: 260px;
+    width: 100%;
+}
+.service-meta {
+    background-color: var(--color-light-blue);
+    border-left: 3px solid var(--color-blue);
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    font-size: var(--fs-sm);
+}
+.service-detail ul { padding-left: 0; }
+.service-detail li {
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 0.5rem;
+}
+.service-detail li::before {
+    content: "✓";
+    color: var(--color-black);
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+}
+.cta-block {
+    text-align: center;
+    background-color: var(--color-light-blue);
+    border-radius: var(--radius);
+}
+
+/* ---------- 9b. FAQ ---------- */
+.faq-item {
+    border-bottom: 1px solid var(--color-mid-blue);
+    padding: 1.25rem 0;
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-item h3 { margin-bottom: 0.4rem; }
+
+/* ---------- 10. Forms (Enquiry + Contact) ---------- */
+.enquiry-form, .contact-form {
+    max-width: 640px;
+}
+.enquiry-form form,
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    background-color: var(--color-light-blue);
+    padding: 2rem;
+    border-radius: var(--radius);
+}
+.enquiry-form label,
+.contact-form label {
+    font-weight: 600;
+    margin-top: 0.75rem;
+}
+.enquiry-form input,
+.enquiry-form select,
+.enquiry-form textarea,
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    font: inherit;
+    font-size: var(--fs-base);
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--radius);
+    background-color: var(--color-white);
+    color: var(--color-text);
+}
+.enquiry-form input:focus,
+.enquiry-form select:focus,
+.enquiry-form textarea:focus,
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 3px rgba(242, 160, 7, 0.25);
+}
+.enquiry-form button,
+.contact-form button {
+    margin-top: 1.25rem;
+    align-self: flex-start;
+    cursor: pointer;
+}
+
+/* ---------- 11. Contact page: locations + map (CSS Grid) ---------- */
+.locations {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+.location {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-mid-blue);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    padding: 1.5rem;
+}
+.map-embed {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+}
+
+/* ---------- 11b. Opening hours table ---------- */
+.hours-table {
+    width: 100%;
+    max-width: 480px;
+    border-collapse: collapse;
+}
+.hours-table th, .hours-table td {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-mid-blue);
+}
+.hours-table th { color: var(--color-navy); font-weight: 600; }
+
+/* ---------- 12. Footer ---------- */
+footer {
+    background-color: var(--color-navy-dark);
+    color: var(--color-white);
+    text-align: center;
+    padding: 2rem 1.5rem;
+}
+footer a { color: var(--color-blue-light); }
+footer a:hover, footer a:focus { color: var(--color-white); }
+.footer-nav { margin-top: 0.75rem; }
+
+/* ==========================================================
+   13. RESPONSIVE DESIGN
+   Breakpoints: desktop (default, >900px), tablet (≤900px),
+   mobile (≤600px). Multi-column layouts collapse to a single
+   column on smaller screens; the header stacks and the
+   "Call Now" button becomes a full-width sticky bar on mobile.
+   ========================================================== */
+
+/* ---- Tablet: ≤900px ---- */
+@media (max-width: 900px) {
+    .services-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .process-steps,
+    .work-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .locations {
+        grid-template-columns: 1fr;
+    }
+    header nav ul {
+        gap: 1rem;
+    }
+}
+
+/* ---- Mobile: ≤600px ---- */
+@media (max-width: 600px) {
+    h1 { font-size: var(--fs-xl); }
+    h2 { font-size: var(--fs-lg); }
+
+    section { padding: 2rem 1rem; }
+
+    header {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        position: static;
+    }
+    .logo a { justify-content: center; }
+    .logo-img { height: auto; width: 12rem; margin: 0 auto; }
+    header nav ul {
+        justify-content: center;
+        gap: 0.75rem 1rem;
+    }
+
+    .services-overview {
+        grid-template-columns: 1fr;
+    }
+    .process-steps,
+    .work-gallery {
+        grid-template-columns: 1fr;
+    }
+    .values-grid { grid-template-columns: 1fr; }
+
+    .hero { text-align: center; }
+    .hero-img { order: -1; }
+
+    .service-detail-grid.reverse { flex-direction: column; }
+    .service-photo { height: 200px; }
+
+    .team-member {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Sticky full-width call button on mobile, per Part 1 UX requirement */
+    .call-now {
+        position: sticky;
+        bottom: 0;
+        display: block;
+        text-align: center;
+        border-radius: 0;
+        margin: 0 -1rem;
+        padding: 1rem;
+    }
+}
